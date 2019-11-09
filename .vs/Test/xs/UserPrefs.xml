@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{F99676B2-0443-47D7-9032-FD4875C175DC}|Default">
+  <MonoDevelop.Ide.ItemProperties.Test PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/Program.cs">
+    <Files>
+      <File FileName="Test/Program.cs" Line="6" Column="1" />
+      <File FileName="Test/IFlashDriveConnect.cs" Line="11" Column="2" />
+      <File FileName="Test/FlashDriveConnect.cs" Line="10" Column="1" />
+      <File FileName="Test/client_secret.json" Line="1" Column="1" />
+      <File FileName="Test/GoogleDriveConnect.cs" Line="26" Column="19" />
+      <File FileName="Test/packages.config" Line="7" Column="76" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Test" expanded="True">
+            <Node name="Test" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

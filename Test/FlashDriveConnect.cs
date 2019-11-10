@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -6,7 +6,9 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Util.Store;
 using File = Google.Apis.Drive.v3.Data.File;
+using File1 = System.IO.File;
 using System.Net.Mime;
+using System.IO.Compression;
 
 namespace Test
 {
@@ -14,6 +16,7 @@ namespace Test
     {
         public FlashDriveConnect()
         {
+
         }
 
        
@@ -32,23 +35,38 @@ namespace Test
         {
             String[] files = GetAllFilesFromFolder(FilePath);
             FilesResource.CreateMediaUpload request;
-            foreach(var File in files)
+            DirectoryInfo directoryInfo= new DirectoryInfo(FilePath);
+            foreach(var file in directoryInfo.GetFiles("*",SearchOption.AllDirectories))
             {
+                string CompressedFile = ZipFile(file);
+                FileInfo fileInfo = new FileInfo(CompressedFile);
                 var fileMadata = new File();
-                fileMadata.Name = GetFileName(File);
+                fileMadata.Name = fileInfo.Name;
                 fileMadata.Parents = new List<string> { "1G809CryOD4arL5wNtOdPm4w9N91chlW_" };
-                string ContentType = GetMimeType(File);
-                using(var Stream = new FileStream(File, FileMode.Open))
+                string ContentType = "application / gzip";
+                using (var Stream = new FileStream(fileInfo.FullName, FileMode.Open))
                 {
-                    request = driveService.Files.Create(fileMadata, Stream,ContentType);
+                    request = driveService.Files.Create(fileMadata, Stream, ContentType);
                     request.Upload();
                 }
+                File1.Delete(fileInfo.FullName);
             }
         }
 
-        public void ZipFiles(string FilePath)
+        public string  ZipFile(FileInfo file)
         {
-            throw new NotImplementedException();
+            using (FileStream fileOrigin = file.OpenRead())
+            {
+                using (FileStream compressedFile = File1.Create($"{file.FullName}1.gz"))
+                {
+                    using (GZipStream zipStream = new GZipStream(compressedFile, CompressionLevel.Optimal))
+                    {
+                        fileOrigin.CopyTo(zipStream);
+                    }
+
+                }
+            }
+            return $"{file.FullName}1.gz";
         }
 
         public string GetMimeType(string FilePath)

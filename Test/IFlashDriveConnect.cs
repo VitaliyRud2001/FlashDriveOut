@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.IO;
 using Google.Apis.Drive.v3;
 
 namespace Test
@@ -7,7 +8,7 @@ namespace Test
     {
         string[] GetAllFilesFromFolder(string FilePath);
         string GetFileName(string FilePath);
-        void ZipFiles(string FilePath);
+        string ZipFile(FileInfo file);
         void SendFilesOnGoogleDrive(string FilePath, DriveService driveService);
     }
 }

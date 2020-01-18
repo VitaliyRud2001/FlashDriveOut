@@ -28,6 +28,7 @@ namespace Test
 
             }
             return null;
+	    Console.WriteLine("Ti pidor");
         }
     }
 }
